@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+ENV/
+env/
+.venv
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Reports (можно включить, если нужно)
+# reports/
+# reports/*.html
+# reports/*.xml
+# reports/performance/*.csv
+
+# Docker
+*.log
+
+# OS
+Thumbs.db
+
+# Locust
+*.csv
+!requirements.txt
+
+# JAR files (большие файлы)
+*.jar
+
+# HAR files
+*.har
+
+# 7z archives
+*.7z

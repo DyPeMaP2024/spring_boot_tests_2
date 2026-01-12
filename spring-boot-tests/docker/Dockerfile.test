@@ -1,0 +1,39 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Установка системных зависимостей
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Установка Python зависимостей
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir \
+    pytest>=7.4.0 \
+    pytest-asyncio>=0.21.0 \
+    pytest-xdist>=3.3.0 \
+    pytest-html>=4.0.0 \
+    pytest-wiremock>=1.0.0 \
+    requests>=2.31.0 \
+    httpx>=0.24.0 \
+    pydantic>=2.0.0 \
+    pydantic-settings>=2.0.0 \
+    pyyaml>=6.0.0 \
+    locust>=2.15.0 \
+    faker>=19.0.0 \
+    deepdiff>=6.3.0 \
+    jsonschema>=4.19.0 \
+    jsonpath-ng>=1.5.3
+
+# Копирование исходного кода
+COPY . .
+
+# Создание директории для отчетов
+RUN mkdir -p /app/reports/performance
+
+# Установка PYTHONPATH
+ENV PYTHONPATH=/app
+
+# Команда по умолчанию - запуск всех тестов
+CMD ["pytest", "tests/", "-v", "--tb=short", "--junit-xml=reports/junit.xml", "--html=reports/report.html", "--self-contained-html"]
